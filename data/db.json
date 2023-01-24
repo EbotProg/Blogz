@@ -13,10 +13,16 @@
       "id": 3
     },
     {
-      "title": "sdfsdf",
-      "body": "sdfsdf",
-      "author": "sdfsd",
+      "title": "aaaaaaaaaaa",
+      "body": "aaaaaaaaaaaaaaaa",
+      "author": "aaaaaa",
       "id": 4
+    },
+    {
+      "title": "New title",
+      "body": "New body",
+      "author": "New author",
+      "id": 5
     }
   ],
   "users": [

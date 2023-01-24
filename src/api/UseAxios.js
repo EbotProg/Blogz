@@ -33,7 +33,7 @@ axios.get(url, {signal: abortCont.signal})
         }
 
     })
- }, 5000)
+ }, 10000)
     
 
     

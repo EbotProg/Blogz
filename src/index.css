@@ -11,7 +11,8 @@
   --clr-box-shadow: #efefef;
   --clr-delete: rgb(214, 64, 89);
   --clr-delete-on-hover: rgb(215, 26, 57);
-  --clr-light-grey: rgb(179, 178, 178);
+  --clr-light-grey: #b3b2b2;
+  --clr-thick-grey: #757575;
 
   --ff-1: 'Rubik', sans-serif;
   --ff-2: 'Poppins', sans-serif;
@@ -155,8 +156,8 @@ body *, body *::after, body *::before{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 2rem;
-  gap: 1.5rem;
+  padding-block: 0.5rem;
+  gap: 0.5rem;
 }
 
 input{
@@ -394,4 +395,57 @@ textarea, input{
 /********for errors *****/
 .error-msg{
   color: red;
+}
+
+
+/*display none for the nav menu btn */
+
+.display-none{
+  display: none;
+}
+
+.display-block{
+  display: block;
+}
+
+
+/*styles for auth nav component */
+
+.auth-nav{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.auth-nav-li{
+  display: flex;
+  flex-direction: row;
+}
+
+.auth-nav-link{
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  /* color: var(--clr-vicious-900); */
+}
+
+.nav-title{
+  text-decoration: none;
+  color: var(--clr-vicious-900);
+  font-size: 2rem;
+}
+
+.registration-toggle{
+  background-color: var(--clr-light-grey);
+  color: var(--clr-vicious-900);
+
+}
+
+.login-toggle{
+  background-color: var(--clr-thick-grey);
+  color: var(--clr-vicious-900);
+  /* font-weight: var(--fw-700); */
 }

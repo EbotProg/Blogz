@@ -6,6 +6,7 @@ import Create from './pages/Create';
 import BlogDetails from './pages/BlogDetails';
 import EditBlog from './pages/EditBlog';
 import Login from './pages/Login';
+import AuthNavbar from './pages/AuthNavbar';
 import React, { useEffect } from 'react';
 import useAxios from "./api/UseAxios";
 import Registration from './pages/Registration';
@@ -50,17 +51,17 @@ export const BlogContext = React.createContext();
     <BlogContext.Provider value={{blogs, loading, error}}>
    
    
-    <Navbar />
+    
       <Routes>
         
        <Route path="/">
            
-           <Route index element={<Home />} />
-           <Route path="create" element={<Create />} />
-           <Route path="blogs/:id" element={<BlogDetails />} />
-           <Route path="edit/:id" element={<EditBlog />} />
-           <Route path="login" element={<Login />} />
-           <Route path="registration" element={<Registration />} />
+           <Route index element={<><Navbar /><Home /></>} />
+           <Route path="create" element={<><Navbar /><Create /></>} />
+           <Route path="blogs/:id" element={<><Navbar /><BlogDetails /></>} />
+           <Route path="edit/:id" element={<><Navbar /><EditBlog /></>} />
+           <Route path="login" element={<><AuthNavbar /><Login /></>} />
+           <Route path="registration" element={<><AuthNavbar /><Registration /></>} />
        </Route>
        
       </Routes>

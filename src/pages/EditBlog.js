@@ -50,7 +50,7 @@ const EditBlog = () => {
    function editBlog(e){
     e.preventDefault();
 
-    axios.put(`/${id}`, {title, body, author})
+    axios.put(`/blogs/${id}`, {title, body, author})
         .then(()=>{
             console.log('blog editted');
             navigate(`/blogs/${id}`);
