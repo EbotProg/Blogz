@@ -19,7 +19,7 @@ const CategoryScroll = () => {
 
     return ( 
         <div className="categ-scroll">
-        <OverlayTrigger placement='left' overlay={<Tooltip>scroll left</Tooltip>}>
+        <OverlayTrigger placement='top' overlay={<Tooltip>scroll left</Tooltip>}>
         <button className='filter-btn left-filter-btn'>
         <AiOutlineDoubleLeft className='lg-icon  ' onClick={scrollRight} />
         </button>
@@ -50,7 +50,7 @@ const CategoryScroll = () => {
                 <div className="categ">Travel</div>
             </div>
             </div>
-            <OverlayTrigger placement='right' overlay={<Tooltip>scroll right</Tooltip>}>
+            <OverlayTrigger placement='top' overlay={<Tooltip>scroll right</Tooltip>}>
             <button className='filter-btn right-filter-btn'>
             <AiOutlineDoubleRight className='lg-icon' onClick={scrollLeft} />
 

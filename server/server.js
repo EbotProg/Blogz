@@ -95,3 +95,31 @@ app.post('/auth/register', (req, res)=>{
     
     res.end();
 })
+
+
+//route for dashbaord
+
+app.get('/blogs', (req, res)=>{
+    let array = [];
+    db.collection('blogs')
+    .find({})
+    .forEach((user)=> array.push(user))
+    .then(()=>{
+        res.send(array);
+    })
+})
+
+app.get('/blogs/:id', (req, res)=>{
+
+    db.collection('blogs')
+    .findOne({_id: req.params.id})
+    .then((result)=>{
+        res.send(result);
+    })
+})
+
+// app.post('/create-new-blog', (req, res)=>{
+
+    
+
+// })

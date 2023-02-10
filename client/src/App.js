@@ -2,8 +2,8 @@ import './App.css';
 import Navbar from './pages/Navbar';
 import Home from './pages/Home';
 import {Routes, Route} from 'react-router-dom';
-// import Create from './pages/Create';
-// import BlogDetails from './pages/BlogDetails';
+import Create from './pages/Create';
+import BlogDetails from './pages/BlogDetails';
 // import EditBlog from './pages/EditBlog';
 import Login from './pages/Login';
 import AuthNavbar from './pages/AuthNavbar';
@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import useAxios from "./api/UseAxios";
 import Registration from './pages/Registration';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import Dashboard from './pages/Dashboard';
 import Comment from './pages/Comment';
 
@@ -70,8 +71,9 @@ function MainApplication(){
     <Navbar>
       <Routes>
            <Route index element={<Home />} />
-           <Route path="/dashboard" element={<Dashboard />} />
+           <Route path="/dashboard/*" element={<BlogDashboard />} />
            <Route path="/comment" element={<Comment />} />
+           <Route path="/create" element={<Create />} />
       </Routes>
     </Navbar>
     </>
@@ -90,5 +92,20 @@ function RegLog(){
     </>
   )
 }
+
+
+function BlogDashboard(){
+  return(
+    <>
+    
+      <Routes>
+      <Route index element={<Dashboard />} />
+      <Route path="/blogs/:id" element={<BlogDetails />} />
+      </Routes>
+    
+    </>
+  )
+}
+
 
 export default App;
