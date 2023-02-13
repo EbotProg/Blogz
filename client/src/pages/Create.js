@@ -1,12 +1,54 @@
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/AxiosInstance";
-import BlogInputSelector from "../components/BlogInputSelector";
+// import BlogInputSelector from "../components/BlogInputSelector";
+import {AiOutlinePlus} from 'react-icons/ai';
+import { BsCloudUpload } from 'react-icons/bs';
+import Category  from '../components/Category';
+import MainStory  from '../components/MainStory';
+import SubTitle  from '../components/SubTitle';
+import MainTitle  from '../components/MainTitle';
+import PhotoUpload  from '../components/PhotoUpload';
+import Paragraph from '../components/Paragraph';
 
 
 const Create = () => {
 
-    
+    //array to store form elements
+    let [formArray, setFormArray] = useState([<MainTitle />,<Category />, <MainStory />])
+    let [formEltNames, setFormEltNames] = useState(['main-title', 'category','main-story']);
+    let obj = {
+        indexOfMainStory: null
+    }
+
+
+    function addAboveMainStory(name, element){
+        let names = [];
+        let elements = [];
+        elements = [...formArray];
+        names = [...formEltNames];
+        elements.splice(obj.indexOfMainStory, 0, element);
+        names.splice(obj.indexOfMainStory, 0, name);
+        setFormArray(elements)
+        setFormEltNames(names);
+    }
+
+    function addEltBelow(name, element){
+        let names = [];
+        let elements = [];
+        elements = [...formArray];
+        names = [...formEltNames];
+        elements.push(element);
+        names.push(name);
+        setFormArray(elements)
+        setFormEltNames(names);
+    }
+    // function displayFirstFormItems(formElement, index, arr){
+    //     console.log(formElement.formElt);
+        
+            
+    // }
+   
 
     let [title, setTitle] = useState('');
     let [body, setBody] = useState('');
@@ -22,88 +64,99 @@ const Create = () => {
         })
     }
 
+   
+
 
     return ( 
-        // <div className="form-content">
-        //     <h2 className="form-title">Create New Blog</h2>
-        //     <form>
-        //         <div className="form-input-div">
-        //         <label htmlFor="">Title: </label>
-        //         <input
-        //         type="text"
-        //         value={title}
-        //         onChange={(e)=> setTitle(e.target.value) } />
-        //         </div>
-        //         <div className="form-input-div">
-        //         <label htmlFor="">Body: </label>
-        //         <textarea 
-        //         cols="30" 
-        //         rows="5"
-        //         value={body}
-        //         onChange={(e)=> setBody(e.target.value) }></textarea>
-        //         </div>
-        //         <div className="form-input-div">
-        //             <label htmlFor="">Author: </label>
-        //             <input type="text"
-        //             value={author}
-        //             onChange={(e)=> setAuthor(e.target.value) } />
-        //         </div>
-        //         <div className="form-input-div form-btn-div">
-        //             <button onClick={addBlog} className="add-blog-btn btn">Add Blog</button>
-        //         </div>
-        //     </form>
-        // </div>
+        
 
          <div className="row gx-4 gy-2 create">
 
-         <BlogInputSelector />
+
 
          <div className="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div className="col-11 col-sm-9 col-lg-6">
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            {/* <!-- Name input--> */}
+                    <h2 className="form-title">Create New Blog</h2>
+                        <form id="contactForm" >
+                            
+                            {/* <div className="form-floating mb-3">
+                                <input 
+                                className="form-control" type="text" placeholder="Enter your name..." />
+                                <label >Main Title</label>
+                                
+                            </div>
+
+                            <select class="form-select mb-3" aria-label="Default select example">
+                             <option selected>Category</option>
+                             <option value="1">Agriculture</option>
+                             <option value="2">Science</option>
+                             <option value="3">Education</option>
+                             <option value="3">Three</option>
+                             <option value="3">Three</option>
+                           </select> */}
+
+                           {formArray.map((item, index, arr)=>{// always display first two elts of array
+                            if(index <= 1){
+                                return item;
+                            }
+                            
+                           })}
+                          
+                          {formArray.map((item, index, arr)=>{//always display elts from the index after index 1 as long as it is not the main story elt
+                            
+                           
+
+                            {formEltNames.map((item, index, arr)=>{
+                            if(item == 'main-story'){
+                                obj.indexOfMainStory = index;
+                            }
+                            })}
+
+                            if(index > 1 && index < obj.indexOfMainStory){
+                                return item;
+                            }
+                            
+                           })}
+
+{/*                            
+                           <div className="photo-upload-btn d-flex flex-column align-items-center justify-content-center mb-3">
+                           <BsCloudUpload className="xxl-icon" />
+                           <p>Browse to upload photo</p>
+                           <input type="file" className="d-none" />
+                           </div> */}
+                           
+
+
+                           <div className="d-grid mb-2"><button type='button' className='input-selector col-5 col-sm-4' onClick={()=>{addAboveMainStory('Sub-title', <SubTitle />)}} ><AiOutlinePlus/>Sub-title</button></div>
+                           <div className="d-grid mb-2"><button type='button' className='input-selector col-5 col-sm-4' onClick={()=>{addAboveMainStory('photo', <PhotoUpload />)}}><AiOutlinePlus/>Photo</button></div>
+
+                            
                             <div className="form-floating mb-3">
-                                <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label htmlFor="name">Full name</label>
-                                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <textarea className="form-control" type="text" placeholder="Enter your message here..." style={{height: '10rem'}} ></textarea>
+                                <label>Main Story</label>
+                            
                             </div>
-                            {/* <!-- Email address input--> */}
-                            <div className="form-floating mb-3">
-                                <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label htmlFor="email">Email address</label>
-                                <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            {/* <!-- Phone number input--> */}
-                            <div className="form-floating mb-3">
-                                <input className="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label htmlFor="phone">Phone number</label>
-                                <div className="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            {/* <!-- Message input--> */}
-                            <div className="form-floating mb-3">
-                                <textarea className="form-control" id="message" type="text" placeholder="Enter your message here..." style={{height: '10rem'}} data-sb-validations="required"></textarea>
-                                <label htmlFor="message">Message</label>
-                                <div className="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            {/* <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted--> */}
-                            <div className="d-none" id="submitSuccessMessage">
-                                <div className="text-center mb-3">
-                                    <div className="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            {/* <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form--> */}
-                            <div className="d-none" id="submitErrorMessage"><div className="text-center text-danger mb-3">Error sending message!</div></div>
-                            {/* <!-- Submit Button--> */}
+
+                            {formArray.map((item, index, arr)=>{//always display elts from the index after index 1 as long as it is not the main story elt
+                            
+                           
+
+                            {formEltNames.map((item, index, arr)=>{
+                            if(item == 'main-story'){
+                                obj.indexOfMainStory = index;
+                            }
+                            })}
+
+                            if(index > 1 && index > obj.indexOfMainStory){
+                                return item;
+                            }
+                            
+                           })}
+                            
+                            <div className="d-grid mb-2"><button type='button' className='input-selector col-5 col-sm-4' onClick={()=>{addEltBelow('Sub-title', <SubTitle /> )}}><AiOutlinePlus/>Sub-title</button></div>
+                           <div className="d-grid mb-2"><button type='button' className='input-selector col-5 col-sm-4' onClick={()=>{addEltBelow('photo', <PhotoUpload /> )}}><AiOutlinePlus/>Photo</button></div>
+                           <div className="d-grid mb-2"><button type='button' className='input-selector col-5 col-sm-4' onClick={()=>{addEltBelow('paragraph', <Paragraph /> )}}><AiOutlinePlus/>Paragraph</button></div>
+
                             <div className="d-grid"><button className="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button></div>
                         </form>
                     </div>

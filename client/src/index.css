@@ -9,7 +9,7 @@
   --clr-vicious-900: #29323C;
   --clr-vicious-600: #2e3843;
   --clr-vicious-400: #485563;
-  --clr-form-control: #566473;
+  --clr-form-control: #a6b8cb;
   --clr-white: #ffffff;
   --clr-btn: #4a596c;
   --clr-btn-on-hover: #29323C;
@@ -284,6 +284,11 @@ align-self: flex-end;
 
 
 /*styling for all icons */
+.xxl-icon{
+width: 3.3rem;
+height: 3.3rem;
+}
+
 .xl-icon{
   width: 2rem;
   height: 2rem;
@@ -517,6 +522,13 @@ align-self: flex-end;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  padding-block: 4rem;
+}
+
+.photo-upload-btn{
+  padding: 1rem;
+  border: 1px dashed var(--clr-vicious-900);
+  border-radius: 0.5rem;  
 }
 
 .input-selector{
